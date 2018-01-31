@@ -11,15 +11,28 @@ public class ItemBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetMouseButtonDown(0))
+        {
 
-    void OnMouseOver()
-    {
-        if(Input.GetMouseButtonDown(0))
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward);
+            //hit can be implicitely coverted to a bool to check if the raycast hit anything
+
+            if (hit)
             {
-            print("Click");
+                if (hit.collider.gameObject.tag == "clickable object")
+                {
+                    Debug.Log("you have clicked something, cunt");
+                }
+            }
+
         }
+
+   // void OnMouseOver()
+   // {
+       
+
+     //       print("Click");
+      // }
 
     }
 }
