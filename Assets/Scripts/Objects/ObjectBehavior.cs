@@ -4,24 +4,37 @@ using UnityEngine;
 
 public class ObjectBehavior : MonoBehaviour {
 
-    public GameObject item;
-    private bool isShowing;
+    public GameObject boxcollider;
 
     // Use this for initialization
     void Start()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            isShowing = !isShowing;
-            item.SetActive(isShowing);
-        }
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+ 
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("pressing e on the drugs");
+                if (gameObject.activeSelf == true)
+                {
+                    Debug.Log("You Collected The Item");
+                    gameObject.SetActive(false);
+                    GameObject.Destroy(boxcollider);
+
+                    //turn on in inventory
+                }
+            }
+        }
+    }
 
 }

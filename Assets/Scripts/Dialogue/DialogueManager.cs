@@ -25,6 +25,7 @@ public class DialogueManager : MonoBehaviour {
         currentlyTalkingTo = null;
         dialogueOfCurrentConversation = null;
         indexInCurrentConversation = 0;
+        
       
     }
 
@@ -44,8 +45,6 @@ public class DialogueManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
         {
             AdvanceConversation();
-
-          
         }
     }
     
@@ -56,8 +55,8 @@ public class DialogueManager : MonoBehaviour {
             currentlyTalkingTo = npc;
             dialogueOfCurrentConversation = npc.GetComponent<NPCDialogueHolder>();
             indexInCurrentConversation = 0;
+           
 
-   
 
     }
 
@@ -89,8 +88,12 @@ public class DialogueManager : MonoBehaviour {
             else
             {
                 // in player dialogue
-                DisplayText(dialogueOfCurrentConversation.playerdialogueSequence[indexInCurrentConversation - dialogueOfCurrentConversation.npcdialogueSequence.Length], playerUIText);
-                indexInCurrentConversation++;
+                if (dialogueOfCurrentConversation.playerdialogueSequence.Length > 0)
+                {
+                    DisplayText(dialogueOfCurrentConversation.playerdialogueSequence[indexInCurrentConversation - dialogueOfCurrentConversation.npcdialogueSequence.Length], playerUIText);
+                    indexInCurrentConversation++;
+                }
+
 
                 // this check will auto end the conversation when you've reached the end of the strings you have for it.
                 if (indexInCurrentConversation >= (dialogueOfCurrentConversation.npcdialogueSequence.Length + dialogueOfCurrentConversation.playerdialogueSequence.Length))
@@ -121,6 +124,20 @@ public class DialogueManager : MonoBehaviour {
                     Debug.Log("begin convo");
                     BeginConversation(collision.gameObject);
                     AdvanceConversation();
+                   
+                }
+            }
+        }
+        if (collision.gameObject.tag == "NPCwQuest")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (currentlyTalkingTo == null)
+                {
+                    Debug.Log("begin convo");
+                    BeginConversation(collision.gameObject);
+                    AdvanceConversation();
+                   
                 }
             }
         }
@@ -132,8 +149,19 @@ public class DialogueManager : MonoBehaviour {
         {
             if (currentlyTalkingTo != null)
             {
+                
                 EndConversation();
+                
             }
         }
+
+         if (collision.gameObject.tag == "NPCwQuest")
+         {
+             if (currentlyTalkingTo != null)
+            { 
+                EndConversation();
+                
+            }
+         }
     }
 }
