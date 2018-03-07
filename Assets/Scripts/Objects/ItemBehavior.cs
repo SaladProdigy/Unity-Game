@@ -4,25 +4,20 @@ using UnityEngine;
 
 public class ItemBehavior : MonoBehaviour
 {
-    Vector2 floatY;
-    float originalY;
-
-    public float floatStrength;
+    public AnimationCurve myCurve;
 
     // Use this for initialization
     void Start()
     {
 
-        this.originalY = this.transform.position;
 
     }
 
     void Update()
     {
-        floatY = transform.position;
-        floatY.y = originalY + (Mathf.Sin(Time.time) * floatStrength);
-        transform.position = floatY;
+        transform.position = new Vector3(transform.position.x, myCurve.Evaluate((Time.time % myCurve.length)), transform.position.z);
     }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
