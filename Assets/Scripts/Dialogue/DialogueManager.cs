@@ -141,6 +141,19 @@ public class DialogueManager : MonoBehaviour {
                 }
             }
         }
+        if (collision.gameObject.tag == "ObjwDesc")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (currentlyTalkingTo == null)
+                {
+                    Debug.Log("begin convo");
+                    BeginConversation(collision.gameObject);
+                    AdvanceConversation();
+
+                }
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -163,5 +176,13 @@ public class DialogueManager : MonoBehaviour {
                 
             }
          }
+        if(collision.gameObject.tag == "ObjwDesc")
+         {
+            if (currentlyTalkingTo != null)
+            {
+                EndConversation();
+
+            }
+        }
     }
 }

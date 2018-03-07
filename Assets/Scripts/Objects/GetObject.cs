@@ -15,6 +15,7 @@ public class GetObject : MonoBehaviour
     PlayerInventory inventory;
     CheckObject checkObject;
 
+
     public string[] hasNeededObjectDialogueNPC;
     public string[] doesNotHaveNeededObjectDialogueNPC;
 
