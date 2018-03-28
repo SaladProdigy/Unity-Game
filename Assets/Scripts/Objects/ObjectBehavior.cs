@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class ObjectBehavior : MonoBehaviour {
 
-    public GameObject boxcollider;
+    
+    public AnimationCurve myCurve;
+
+    public GameObject invObject; 
+    private bool isShowing;
 
     // Use this for initialization
     void Start()
     {
- 
+        transform.position = new Vector3(transform.position.x, myCurve.Evaluate((Time.time % myCurve.length)), transform.position.z);
     }
 
     // Update is called once per frame
@@ -29,7 +33,9 @@ public class ObjectBehavior : MonoBehaviour {
                 {
                     Debug.Log("You Collected The Item");
                     gameObject.SetActive(false);
-                    GameObject.Destroy(boxcollider);
+
+                    isShowing = !isShowing;
+                    invObject.SetActive(isShowing);
 
                     //turn on in inventory
                 }

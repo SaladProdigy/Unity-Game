@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckObject : MonoBehaviour {
 
     public GameObject desiredObject;
+    public GameObject boxcollider;
 
     PlayerInventory inventory;
     NPCDialogueHolder npcDialogueHolder;
@@ -48,7 +49,7 @@ public class CheckObject : MonoBehaviour {
                     npcDialogueHolder.npcdialogueSequence = hasDesiredObjectDialogueNPC;
                     npcDialogueHolder.playerdialogueSequence = hasDesiredObjectDialoguePLAYER;
 
-
+                    GameObject.Destroy(boxcollider);
                 }
                 else
                 {

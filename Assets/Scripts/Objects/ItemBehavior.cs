@@ -6,6 +6,12 @@ public class ItemBehavior : MonoBehaviour
 {
     public AnimationCurve myCurve;
 
+    public GameObject turnOn;
+    public GameObject turnOff;
+
+    private bool isOn;
+    private bool isShowing;
+
     // Use this for initialization
     void Start()
     {
@@ -31,6 +37,13 @@ public class ItemBehavior : MonoBehaviour
                     Debug.Log("You Collected The Item");
                     gameObject.SetActive(false);
                     //turn on in inventory
+
+                    isOn = !isOn;
+                    turnOn.SetActive(isOn);
+
+                    isShowing = false;
+                    turnOff.SetActive(false);
+
                 }
             }
         }

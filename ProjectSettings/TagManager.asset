@@ -9,6 +9,9 @@ TagManager:
   - NPC
   - NPCwQuest
   - ObjwDesc
+  - Itemwdesc
+  - QuestItem
+  - Sound
   layers:
   - Default
   - TransparentFX

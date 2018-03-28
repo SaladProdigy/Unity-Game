@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class DoorBehavior : MonoBehaviour {
 
     public GameObject goTo;
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
+
+    public AudioClip doorSound;
+
+    // Use this for initialization
+    void Start () {
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,7 +28,9 @@ public class DoorBehavior : MonoBehaviour {
             
             if (Input.GetKeyDown(KeyCode.E))
             {
+                SoundBehavior.me.PlaySound(doorSound);
                 Debug.Log("pressing E in the doorway");
+                Debug.Log("collision object name: " + collision.gameObject.name);
                 collision.transform.position = goTo.transform.position;
             }
         }

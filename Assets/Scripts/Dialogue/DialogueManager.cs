@@ -9,6 +9,10 @@ public class DialogueManager : MonoBehaviour {
     NPCDialogueHolder dialogueOfCurrentConversation;
     int indexInCurrentConversation;
 
+    public Button continueButton;
+
+    public GameObject popUpText;
+
     public GameObject dialogue; 
     private bool isShowing;
 
@@ -25,8 +29,10 @@ public class DialogueManager : MonoBehaviour {
         currentlyTalkingTo = null;
         dialogueOfCurrentConversation = null;
         indexInCurrentConversation = 0;
-        
-      
+
+        Button btn = continueButton.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
+
     }
 
     void Update()
@@ -39,14 +45,21 @@ public class DialogueManager : MonoBehaviour {
 
 			when you're done, call EndConversation
 		*/
-
+    }
 
         // temporary code
-        if (Input.GetKeyDown(KeyCode.R))
+        void TaskOnClick()
         {
             AdvanceConversation();
+
+        if (currentlyTalkingTo == null)
+        {
+            EndConversation();
+
         }
+
     }
+    
     
     public void BeginConversation(GameObject npc)
     {
@@ -105,6 +118,10 @@ public class DialogueManager : MonoBehaviour {
         else
         {
             Debug.Log("We're not currently talking to anyone!");
+            EndConversation();
+
+            isShowing = false;
+            dialogue.SetActive(false);
         }
     }
 
@@ -154,35 +171,59 @@ public class DialogueManager : MonoBehaviour {
                 }
             }
         }
+
+        if (collision.gameObject.tag == "Itemwdesc")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (currentlyTalkingTo == null)
+                {
+                    Debug.Log("begin convo");
+                    BeginConversation(collision.gameObject);
+                    AdvanceConversation();
+
+                }
+            }
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "NPC")
         {
             if (currentlyTalkingTo != null)
             {
-                
+
                 EndConversation();
-                
+
             }
         }
 
-         if (collision.gameObject.tag == "NPCwQuest")
-         {
-             if (currentlyTalkingTo != null)
-            { 
-                EndConversation();
-                
-            }
-         }
-        if(collision.gameObject.tag == "ObjwDesc")
-         {
+        if (collision.gameObject.tag == "NPCwQuest")
+        {
             if (currentlyTalkingTo != null)
             {
                 EndConversation();
 
             }
         }
+        if (collision.gameObject.tag == "ObjwDesc")
+        {
+            if (currentlyTalkingTo != null)
+            {
+                EndConversation();
+
+            }
+        }
+        if (collision.gameObject.tag == "Itemwdesc")
+        {
+                if (currentlyTalkingTo == null)
+                {
+                    EndConversation();
+
+                }
+            }
+        }*/
     }
-}
+
+

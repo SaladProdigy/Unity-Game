@@ -45,12 +45,13 @@ public class GetObject : MonoBehaviour
             {
                 Debug.Log("E is pressed");
 
-                if (GameObject.Find("Random_1").GetComponent <CheckObject> ().questStart)
+                if (GameObject.Find("Random_1").GetComponent<CheckObject>().questStart)
                 {
                     Debug.Log("Stuff is happening");
 
                     if (inventoryObject.activeSelf == false)
                     {
+
                         for (int i = 0; i < inventory.inventoryObjects.Count; i++)
                         {
                             if (inventory.inventoryObjects[i] == neededObject)
@@ -79,12 +80,13 @@ public class GetObject : MonoBehaviour
                         npcDialogueHolder.playerdialogueSequence = doesNotHaveNeededObjectDialoguePLAYER;
                     }
                 }
-              
+
             }
         }
     }
+}
 
     /*Put CheckObject on Jeffery and this code onto Wolfman. Quest needs to start with Jeffery, wolfman needs to give you the object and then after getting the object,
         the collider on JEffery (make that a child) needs to be destroyed*/
-}
+
 

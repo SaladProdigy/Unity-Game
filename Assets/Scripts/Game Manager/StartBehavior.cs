@@ -25,6 +25,6 @@ public class StartBehavior : MonoBehaviour {
 
     void TaskOnClick()
     {
-        SceneManager.LoadScene("Beginning Level", LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }
