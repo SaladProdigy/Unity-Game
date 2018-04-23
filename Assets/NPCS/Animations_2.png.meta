@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7c656538207b0fe4384283c7938433ae
-timeCreated: 1522117397
+timeCreated: 1523637879
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,9 @@ TextureImporter:
     21300004: Animations_2_2
     21300006: Animations_2_3
     21300008: Animations_2_4
+    21300010: Animations_2_5
+    21300012: Animations_2_6
+    21300014: Animations_2_7
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -91,7 +94,7 @@ TextureImporter:
         width: 19
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -105,7 +108,7 @@ TextureImporter:
         width: 19
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -119,7 +122,7 @@ TextureImporter:
         width: 26
         height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -133,7 +136,7 @@ TextureImporter:
         width: 26
         height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,6 +149,48 @@ TextureImporter:
         y: 241
         width: 26
         height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Animations_2_5
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 241
+        width: 31
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Animations_2_6
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 241
+        width: 31
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Animations_2_7
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 242
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

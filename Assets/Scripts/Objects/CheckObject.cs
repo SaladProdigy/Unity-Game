@@ -4,31 +4,32 @@ using UnityEngine;
 
 public class CheckObject : MonoBehaviour {
 
-    public GameObject desiredObject;
-    public GameObject boxcollider;
-
+    //Scripts
     PlayerInventory inventory;
     NPCDialogueHolder npcDialogueHolder;
 
-    public bool questStart = false;
+    //Game Objects
+    public GameObject desiredObject;
+    public GameObject boxcollider;
 
+    //Bools
+    public bool questStart = false;
+    public bool hasDesiredObject = false;
+    public bool isOn;
+
+    //Strings
     public string[] hasDesiredObjectDialogueNPC;
     public string[] doesNotHaveDesiredObjectDialogueNPC;
 
     public string[] hasDesiredObjectDialoguePLAYER;
     public string[] doesNotHaveDesiredObjectDialoguePLAYER;
 
-    // Use this for initialization
+
     void Start () {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
         npcDialogueHolder = GetComponent<NPCDialogueHolder>();
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void OnTriggerStay2D(Collider2D collision)
     {
@@ -36,15 +37,14 @@ public class CheckObject : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                bool hasDesiredObject = false;
                 questStart = true;
                 Debug.Log("Quest has started");
 
-                if (hasDesiredObject == true)
+                if (desiredObject.activeSelf == true)
                 {
                     Debug.Log("HAS OBJECT");
 
-                    Debug.Log("before set");
+                    desiredObject.SetActive(false);
 
                     npcDialogueHolder.npcdialogueSequence = hasDesiredObjectDialogueNPC;
                     npcDialogueHolder.playerdialogueSequence = hasDesiredObjectDialoguePLAYER;
@@ -55,7 +55,9 @@ public class CheckObject : MonoBehaviour {
                 {
                     Debug.Log("DOESN'T HAVE OBJECT");
                     npcDialogueHolder.npcdialogueSequence = doesNotHaveDesiredObjectDialogueNPC;
-                    npcDialogueHolder.playerdialogueSequence = hasDesiredObjectDialoguePLAYER;
+                    Debug.Log("npc talked");
+                    npcDialogueHolder.playerdialogueSequence = doesNotHaveDesiredObjectDialoguePLAYER;
+                    Debug.Log("player talked");
 
                 }
             }

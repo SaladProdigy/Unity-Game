@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ItemBehavior : MonoBehaviour
 {
+    //Animation
     public AnimationCurve myCurve;
 
+    //Game Objects
     public GameObject turnOn;
     public GameObject turnOff;
 
+    //Bools
     private bool isOn;
     private bool isShowing;
 
-    // Use this for initialization
-    void Start()
-    {
+    //Audio
+    public AudioClip itemSound;
 
-
-    }
 
     void Update()
     {
@@ -34,6 +34,7 @@ public class ItemBehavior : MonoBehaviour
                 Debug.Log("pressing e");
                 if (gameObject.activeSelf == true)
                 {
+                    SoundBehavior.me.PlaySound(itemSound);
                     Debug.Log("You Collected The Item");
                     gameObject.SetActive(false);
                     //turn on in inventory

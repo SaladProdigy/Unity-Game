@@ -6,13 +6,4 @@ public class PlayerInventory : MonoBehaviour {
 
     public List<GameObject> inventoryObjects = new List<GameObject>();
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

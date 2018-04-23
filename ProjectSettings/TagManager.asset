@@ -12,6 +12,7 @@ TagManager:
   - Itemwdesc
   - QuestItem
   - Sound
+  - intro
   layers:
   - Default
   - TransparentFX

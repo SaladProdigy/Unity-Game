@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class GetObject : MonoBehaviour
 {
+    //Scripts
+    NPCDialogueHolder npcDialogueHolder;
+    public PlayerInventory inventory;
+    CheckObject checkObject;
 
-    bool hasNeededObject = false;
+    //Bools
+    public bool hasNeededObject = false;
 
+    //Game Objects
     public GameObject neededObject;
     public GameObject inventoryObject;
 
-    NPCDialogueHolder npcDialogueHolder;
-    PlayerInventory inventory;
-    CheckObject checkObject;
-
-
+    //Strings
     public string[] hasNeededObjectDialogueNPC;
     public string[] doesNotHaveNeededObjectDialogueNPC;
 
@@ -26,15 +28,9 @@ public class GetObject : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+       // inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
         npcDialogueHolder = GetComponent<NPCDialogueHolder>();
         checkObject = GetComponent<CheckObject>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void OnTriggerStay2D(Collider2D collision)
@@ -51,18 +47,20 @@ public class GetObject : MonoBehaviour
 
                     if (inventoryObject.activeSelf == false)
                     {
-
-                        for (int i = 0; i < inventory.inventoryObjects.Count; i++)
-                        {
-                            if (inventory.inventoryObjects[i] == neededObject)
-                            {
-                                hasNeededObject = true;
-                                inventory.inventoryObjects.RemoveAt(i);
-                            }
-                        }
+                           for (int i = 0; i < inventory.inventoryObjects.Count; i++)
+                           {
+                               if (inventory.inventoryObjects[i] == neededObject)
+                               {
+                                   hasNeededObject = true;
+                                   inventory.inventoryObjects.RemoveAt(i);
+                               }
+                           }
+                             
                         Debug.Log("Has Object");
-                        inventoryObject.SetActive(true);
-                        inventory.inventoryObjects.Add(inventoryObject);
+
+                    
+                            inventoryObject.SetActive(true);
+                           inventory.inventoryObjects.Add(inventoryObject);
                     }
 
                     if (hasNeededObject)

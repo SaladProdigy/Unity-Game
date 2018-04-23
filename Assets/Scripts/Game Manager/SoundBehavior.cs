@@ -8,6 +8,7 @@ public class SoundBehavior : MonoBehaviour
     public static SoundBehavior me = null;
 
     public GameObject audioSourcePrefab;
+
     public AudioSource[] audioSources;
 
     void Awake()
@@ -25,13 +26,6 @@ public class SoundBehavior : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
-
-
-
-    void Start()
-    {
-        // initialize the array of audiosources
         audioSources = new AudioSource[64];
 
         // populating the array with audiosources by instantiating our audiosource prefab
@@ -40,6 +34,14 @@ public class SoundBehavior : MonoBehaviour
             audioSources[i] = (Instantiate(audioSourcePrefab) as GameObject).GetComponent<AudioSource>();
             audioSources[i].transform.SetParent(transform);
         }
+    }
+
+
+
+    void Start()
+    {
+       // SoundBehavior.me.PlaySound(themeMusic,0.75f, 1f, true);
+      
     }
 
     // base method for playing a sound. give it a clip, volume, pitch, and optionally a bool for if it should loop
@@ -85,6 +87,7 @@ public class SoundBehavior : MonoBehaviour
         Debug.Log("all audiosources are currently playing, returning index 0");
         return 0;
     }
+
 
     // method to stop a sound 
     public void StopSound(AudioSource audioSource)

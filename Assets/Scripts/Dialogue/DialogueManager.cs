@@ -5,24 +5,26 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
-    GameObject currentlyTalkingTo;
+    //Scripts and Extra
     NPCDialogueHolder dialogueOfCurrentConversation;
     int indexInCurrentConversation;
 
+    //Game Objects
+    public GameObject dialogue;
+    public GameObject currentlyTalkingTo;
+    public GameObject popUp;
+
+    //Buttons
     public Button continueButton;
 
-    public GameObject popUpText;
-
-    public GameObject dialogue; 
+    //Bools
     private bool isShowing;
+    private bool isInteractive;
 
-    public Text playerName;
-    public Text npcName;
-
+    //Texts
     public Text npcUIText;
     public Text playerUIText;
 
-    
 
     void Start()
     {
@@ -35,19 +37,7 @@ public class DialogueManager : MonoBehaviour {
 
     }
 
-    void Update()
-    {
-        /*
-			you'll need your own code for when you want to begin a conversation and when you want to advance a conversations.
-			always call BeginConversation and pass the GameObject of the npc you're talking to when you start a convo.
-
-			then you need to call AdvanceConversation to go through each line
-
-			when you're done, call EndConversation
-		*/
-    }
-
-        // temporary code
+        
         void TaskOnClick()
         {
             AdvanceConversation();
@@ -63,14 +53,20 @@ public class DialogueManager : MonoBehaviour {
     
     public void BeginConversation(GameObject npc)
     {
-            isShowing = !isShowing;
-            dialogue.SetActive(isShowing);
-            currentlyTalkingTo = npc;
-            dialogueOfCurrentConversation = npc.GetComponent<NPCDialogueHolder>();
-            indexInCurrentConversation = 0;
-           
+        StartCoroutine(BeginConversationIE(npc));
+    }
 
+    IEnumerator BeginConversationIE (GameObject npc)
+    {
+        yield return null;
+        Debug.Log("beginning convo");
+        isShowing = !isShowing;
+        dialogue.SetActive(isShowing);
+        currentlyTalkingTo = npc;
+        dialogueOfCurrentConversation = npc.GetComponent<NPCDialogueHolder>();
+        indexInCurrentConversation = 0;
 
+        AdvanceConversation();
     }
 
     public void EndConversation()
@@ -92,11 +88,15 @@ public class DialogueManager : MonoBehaviour {
 				this assumes we read all of the npc dialogue then move to player dialogue
 				the if statement checks if we've finished reading all of the strings from the npc dialogue
 			*/
+            Debug.Log("index in current convo: " + indexInCurrentConversation + ". dialogue of current convo length: " + dialogueOfCurrentConversation.npcdialogueSequence.Length);
             if (indexInCurrentConversation < dialogueOfCurrentConversation.npcdialogueSequence.Length)
             {
                 // in npc dialogue
+                Debug.Log("hey");
                 DisplayText(dialogueOfCurrentConversation.npcdialogueSequence[indexInCurrentConversation], npcUIText);
                 indexInCurrentConversation++;
+
+                
             }
             else
             {
@@ -105,6 +105,8 @@ public class DialogueManager : MonoBehaviour {
                 {
                     DisplayText(dialogueOfCurrentConversation.playerdialogueSequence[indexInCurrentConversation - dialogueOfCurrentConversation.npcdialogueSequence.Length], playerUIText);
                     indexInCurrentConversation++;
+
+                  
                 }
 
 
@@ -127,6 +129,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void DisplayText(string line, Text uiText)
     {
+        Debug.Log("trying to display text: " + line);
         uiText.text = line;
     }
 
@@ -138,9 +141,9 @@ public class DialogueManager : MonoBehaviour {
             {
                 if (currentlyTalkingTo == null)
                 {
-                    Debug.Log("begin convo");
+                    Debug.Log("begin convo. colliding with: " + collision.gameObject.name);
                     BeginConversation(collision.gameObject);
-                    AdvanceConversation();
+                //  AdvanceConversation();
                    
                 }
             }
@@ -151,10 +154,11 @@ public class DialogueManager : MonoBehaviour {
             {
                 if (currentlyTalkingTo == null)
                 {
-                    Debug.Log("begin convo");
+                    Debug.Log("begin convo. colliding with: " + collision.gameObject.name);
                     BeginConversation(collision.gameObject);
-                    AdvanceConversation();
-                   
+                //  AdvanceConversation();
+                
+
                 }
             }
         }
@@ -164,9 +168,10 @@ public class DialogueManager : MonoBehaviour {
             {
                 if (currentlyTalkingTo == null)
                 {
-                    Debug.Log("begin convo");
+                    Debug.Log("begin convo. colliding with: " + collision.gameObject.name);
                     BeginConversation(collision.gameObject);
-                    AdvanceConversation();
+              //    AdvanceConversation();
+                    
 
                 }
             }
@@ -178,52 +183,74 @@ public class DialogueManager : MonoBehaviour {
             {
                 if (currentlyTalkingTo == null)
                 {
-                    Debug.Log("begin convo");
+                    Debug.Log("begin convo. colliding with: " + collision.gameObject.name);
                     BeginConversation(collision.gameObject);
-                    AdvanceConversation();
+               //   AdvanceConversation();
+                   
 
                 }
             }
         }
     }
-
-    /*private void OnTriggerExit2D(Collider2D collision)
+   private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "NPC")
         {
-            if (currentlyTalkingTo != null)
-            {
-
-                EndConversation();
-
-            }
+            Debug.Log("Is On");
+            isInteractive = !isInteractive;
+            popUp.SetActive(true);
         }
 
         if (collision.gameObject.tag == "NPCwQuest")
         {
-            if (currentlyTalkingTo != null)
-            {
-                EndConversation();
-
-            }
+            Debug.Log("Is On");
+            isInteractive = !isInteractive;
+            popUp.SetActive(true);
         }
         if (collision.gameObject.tag == "ObjwDesc")
         {
-            if (currentlyTalkingTo != null)
-            {
-                EndConversation();
-
-            }
+            Debug.Log("Is On");
+            isInteractive = !isInteractive;
+            popUp.SetActive(true);
         }
-        if (collision.gameObject.tag == "Itemwdesc")
+        if (collision.gameObject.tag == "ItemwDesc")
         {
-                if (currentlyTalkingTo == null)
-                {
-                    EndConversation();
-
-                }
-            }
-        }*/
+            Debug.Log("Is On" + collision.gameObject.name);
+            isInteractive = !isInteractive;
+            popUp.SetActive(true);
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "NPC")
+        {
+  
+                popUp.SetActive(false);
+            
+        }
+
+        if (collision.gameObject.tag == "NPCwQuest")
+        {
+
+                popUp.SetActive(false);
+  
+        }
+        if (collision.gameObject.tag == "ObjwDesc")
+        {
+            
+                popUp.SetActive(false);
+            
+        }
+        if (collision.gameObject.tag == "ItemwDesc")
+        {
+         
+                popUp.SetActive(false);
+         
+        }
+    }
+
+
+}
 
 

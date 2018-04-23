@@ -6,19 +6,22 @@ using UnityEngine.UI;
 public class MapBehavior : MonoBehaviour {
 
     public Button warp;
+    public Button phone;
 
     public GameObject option1;
     public GameObject option2;
     public GameObject option3;
     public GameObject option4;
 
-    private bool isShowing;
+    public bool isShowing;
+
+    
 
     void Start()
     {
         Button btn = warp.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
-
+        
     }
 
     void TaskOnClick()
@@ -29,5 +32,13 @@ public class MapBehavior : MonoBehaviour {
         option3.SetActive(isShowing);
         option4.SetActive(isShowing);
         Debug.Log("You have clicked the button!");
+
+        if(isShowing == true)
+        {
+            isShowing = false;
+        }
+
+        //try adding feedback loop
+        
     }
 }

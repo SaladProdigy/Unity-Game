@@ -9,17 +9,6 @@ public class DoorBehavior : MonoBehaviour {
 
     public AudioClip doorSound;
 
-    // Use this for initialization
-    void Start () {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
 
     void OnTriggerStay2D(Collider2D collision)
     {

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 87f3f248492011a4bbb47651e55b96f6
-timeCreated: 1520619167
+timeCreated: 1523638397
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,7 @@ TextureImporter:
     21300012: Apps and buttons Axel_6
     21300014: Apps and buttons Axel_7
     21300016: Apps and buttons Axel_8
+    21300018: Apps and buttons Axel_9
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -208,6 +209,20 @@ TextureImporter:
         height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Apps and buttons Axel_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 69
+        width: 7
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

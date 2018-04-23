@@ -2,19 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
     public float speed;
     Vector2 movement;
 
     Rigidbody2D rb;
-    //Animator anim;
+    Animator anim;
+
+    private bool isIdle = true;
+    bool isMoving = false;
+
+    const int STATE_IDLE = 0;
+    const int STATE_WALK = 1;
+
+    int _currentAnimationState = STATE_IDLE;
 
     void Start()
     {
         // assigning components to our global variables
         rb = GetComponent<Rigidbody2D>();
-       // anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -22,6 +31,7 @@ public class Player : MonoBehaviour {
         MovePlayer();
         HandleSpriteDirection();
         //SetAnimationValue();
+        //anim.SetBool(STATE_IDLE, isMoving);
     }
 
     void FixedUpdate()
@@ -38,11 +48,23 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.A))
         {
             movement += Vector2.left;
+
         }
 
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             movement += Vector2.right;
+
+        }
+
+     
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("CB_Animation"))
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
         }
     }
 
@@ -55,6 +77,7 @@ public class Player : MonoBehaviour {
             Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
+           
         }
         else if (rb.velocity.x > 0)
         {
@@ -62,19 +85,21 @@ public class Player : MonoBehaviour {
             Vector3 scale = transform.localScale;
             scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
+           
         }
+       
     }
-
-    void SetAnimationValue()
+    
+   /* void SetAnimationValue()
     {
         // setting parameters for the animator which controls whether we should be running or be in idle
         // isRunning is true if our movement vector is anything but zero        
-        bool isRunning = (movement != Vector2.zero);
-        //anim.SetBool("running", isRunning);
+        bool isWalking = (movement != Vector2.zero);
+        //anim.SetBool("walking", isWalking);
 
 
         // using the x component of the rigidbody velocity to affect the speed of the animation so moving slower plays the run animation slower
-        if (isRunning)
+        if (isWalking)
         {
             float xVelocityMagnitude = Mathf.Abs(rb.velocity.x);
 
@@ -88,13 +113,34 @@ public class Player : MonoBehaviour {
                     animSpeed = 0.2f;
                 }
 
-                //anim.speed = animSpeed;
+                anim.speed = animSpeed;
             }
         }
-       /* else
+        else
         {
             // we only want to change the animation speed for running, so we set the speed back to 1 if we're doing anything else.
             anim.speed = 1;
-        }*/
+        }
+    }*/
+        void changeState(int state)
+        {
+
+            if (_currentAnimationState == state)
+                return;
+
+            switch (state)
+            {
+
+                case STATE_WALK:
+                    anim.SetInteger("state", STATE_WALK);
+                    break;
+
+                case STATE_IDLE:
+                    anim.SetInteger("state", STATE_IDLE);
+                    break;
+
+            }
+        }
     }
-}
+
+
