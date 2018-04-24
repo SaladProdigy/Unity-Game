@@ -45,15 +45,13 @@ public class IntroSequence : MonoBehaviour {
     {
         Debug.Log("Start sequence");
  
-
-        //introText.text = texts[sequenceNumber];
+            introText.text = texts[sequenceNumber];
            
-        if (GameObject.Find("intro"))
-        {
+      
             Debug.Log(sequenceNumber);
 
             backgroundSpriteRenderer.sprite = backgrounds[sequenceNumber];
-        }
+        
             
  
        
