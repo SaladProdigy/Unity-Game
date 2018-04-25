@@ -17,6 +17,7 @@ public class ItemBehavior : MonoBehaviour
 
     //Audio
     public AudioClip itemSound;
+    public AudioSource gameMusic;
 
 
     void Update()
@@ -34,6 +35,8 @@ public class ItemBehavior : MonoBehaviour
                 Debug.Log("pressing e");
                 if (gameObject.activeSelf == true)
                 {
+                    gameMusic.Play();
+
                     SoundBehavior.me.PlaySound(itemSound);
                     Debug.Log("You Collected The Item");
                     gameObject.SetActive(false);

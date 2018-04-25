@@ -21,8 +21,8 @@ public class StartBehavior : MonoBehaviour {
         startButton = GetComponent<Button>();
         startButton.onClick.AddListener(TaskOnClick);
 
-        sMusic = GetComponent<AudioSource>();
-        gMusic = GetComponent<AudioSource>();
+       // sMusic = GetComponent<AudioSource>();
+        //gMusic = GetComponent<AudioSource>();
 
 
     }
@@ -33,12 +33,9 @@ public class StartBehavior : MonoBehaviour {
         if (playTitleMusic == true)
         {
             sMusic.Play();
-            gMusic.mute = true;
+            //gMusic.mute = true;
         }
-        else if (playTitleMusic == false)
-        {
-            gMusic.mute = false;
-        }
+       
 
     }
 

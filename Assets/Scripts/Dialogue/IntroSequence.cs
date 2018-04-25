@@ -17,10 +17,10 @@ public class IntroSequence : MonoBehaviour {
     int sequenceNumber = 0;
 
 	void Start () {
-        SetSequence(sequenceNumber);
         Button btn = continueB.GetComponent<Button>();
         backgroundSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         btn.onClick.AddListener(TaskOnClick);
+        SetSequence(sequenceNumber);
     }
     
     public void TaskOnClick ()
